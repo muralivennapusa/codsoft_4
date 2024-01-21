@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Play ROCK PAPER SCISSOR..
+    </title>
+    <style>
+        body {
+            background: linear-gradient(#5cb7ec,#FBEEC1);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        #Paper
+        {
+            color: aliceblue;
+            width: 100px;
+            height: 60px;
+            border-radius: 7%;
+            border: 2px solid #553D67;
+            background-color: #F64C72;
+            
+        }
+        #Paper:hover
+        {
+            color: yellow;
+            width: 100px;
+            height: 60px;
+            border-radius: 7%;
+            border: 2px solid yellow;
+            background-color: black;   
+        }
+        #Scissor
+        {
+            color: aliceblue;
+            width: 100px;
+            height: 60px;
+            border-radius: 7%;
+            border: 2px solid #000000;
+            background-color: #c886fa;
+        }
+        #Scissor:hover{
+            color: yellow;
+            width: 100px;
+            height: 60px;
+            border-radius: 7%;
+            border: 2px solid yellow;
+            background-color: #000000;
+        }
+        #Rock
+        {
+            color: black;
+            width: 100px;
+            height: 60px;
+            border-radius: 7%;
+            border: 2px solid #553D67;
+            background-color: #49ffdb;
+            
+        }
+        #Rock:hover{
+            color: yellow;
+            width: 100px;
+            height: 60px;
+            border-radius: 7%;
+            border: 2px solid yellow;
+            background-color: black;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid black;
+        }
+        #Scoreboard{
+            top:10px;
+            right:20px;
+            position:fixed;
+        }
+        table {
+            background-color: pink;
+            width: 100%;
+            border: 1px solid black;
+            font-size: 18px;
+            text-align: center;
+            padding:10px;
+            border-radius: 10px;
+        }
+        th{
+            width:100px;
+        }
+        td{
+            background-color: aquamarine;
+        }
+        #input_form
+        {
+            display:flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        h1{
+            left:40%;
+        }
+        #output 
+        {
+            text-align: center;
+            top:50%;
+        }
+        .output_img
+        {
+            height: 150px;
+            width: 150px;
+            border-radius: 7%;
+            border: 2px solid black;
+        }
+        #Submit
+        {
+            height: 55px;
+            width: 150px;
+            border-radius: 7%;
+            background-color: pink;
+            border: 2px solid yellow;
+        }
+        #Submit:hover
+        {
+            color:#F64C72;
+            height: 55px;
+            width: 150px;
+            border-radius: 7%;
+            background-color: aqua;
+            border: 2px solid pink;
+        }
+        #RULES
+        {
+            width: 20%;
+        }
+        h1,h2,h3,th{
+            font-family: 'Tahoma',sans-serif;
+        }
+        p{
+            font-family: monospace;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock..! Paper.!! Scissor!!!</h1>
+    <br>
+    <div id=input_form>
+        <br>
+      
+        
+        <form action="." method="post">
+            <input type="text" id="myTextBox" name="user_input" value="Initial Value">
+            <br>
+            <br>
+            <img src="{{rock}}" alt="rock">
+            <input type="button" id="Rock" value="Rock">
+            <br>
+            <br>
+            <img src="{{paper}}" alt="paper">
+            <input  type="button" id="Paper"value="Paper">
+            <br>
+            <br>
+            <img src="{{scissor}}" alt="scissor">
+            <input type="button" id="Scissor" value="Scissor">
+            <br>
+            <br>
+            <br>
+            <strong>
+            <input id="Submit" type="submit" value="PLAY">
+            </strong>
+        </form>
+        <br>
+        <br>
+        <div id="User_move">
+            <br>
+            <h2>User's Move:</h2>
+            <br>
+            <p>{{UM}}</p>        
+            <br>
+            <img src="{{UI}}" class="output_img" alt="paper">
+        </div>
+        <h2>VS</h2>
+        <div id="Computer_move">
+            <br>
+            <h2>Computer's Move:</h2>
+            <br>
+            <p>{{CM}}</p>
+            <br>
+            <img src="{{CI}}" class="output_img" alt="rock">
+        </div>
+        <br>
+        <br>
+        <br>
+        <div id="RULES">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h3>Rules...</h3>
+            <dl>
+                <dd>Click one of the 3 buttons</dd>
+                <dd>(below the white box)</dd>
+                <dd>Rock or Paper or Scissor </dd>
+                <dd>your choice will appear on the white box</dd>
+                <br>
+                <li>Rock beats Scissor</li>
+                <li>Paper beats Rock</li>
+                <li>Scissor beats Paper</li>
+                <br>
+                <dd>and Click PLAY</dd> 
+            </dl>
+            </dl>
+        </div>
+    </div>
+    <div id ="moves">
+        
+    </div>
+        
+    <div id=output >
+        <h2>Winner:</h2>
+        <p>{{Winner}}</p>
+    </div>
+    <br>
+    <div id="Scoreboard">
+        <h2>Scoreboard:</h2>
+        <table>
+            <tr>
+                <th>Computer</th>
+                <th>User</th>
+            </tr>
+            <tr>
+                <td>{{CW}}</td>
+                <td>{{UW}}</td>
+            </tr>       
+        </table>
+    </div>
+    
+  
+    <script>
+       var textBox = document.getElementById("myTextBox");
+        var Rock = document.getElementById("Rock");
+        var Paper = document.getElementById("Paper");
+        var Scissor = document.getElementById("Scissor");
+
+        var initialValue = "";
+
+        textBox.value = initialValue;
+
+        Paper.addEventListener("click", function() {
+            textBox.value = (textBox.value === initialValue) ? "Paper" : initialValue;
+            initialValue = "Paper";
+        });
+        Rock.addEventListener("click", function() {
+            textBox.value = (textBox.value === initialValue) ? "Rock" : initialValue;
+            initialValue = "Rock";
+        });
+        Scissor.addEventListener("click", function() {
+            textBox.value = (textBox.value === initialValue) ? "Scissor" : initialValue;
+            initialValue = "Scissor";
+        });
+    </script>
+</body>
